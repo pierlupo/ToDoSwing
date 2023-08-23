@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -145,6 +146,8 @@ class Footer extends JPanel {
         addTask = new JButton("ADD TASK"); // add task button
         //addTask.setBorder(emptyBorder); // remove border
         addTask.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        Border RaisedLevelBorderAdd = BorderFactory.createRaisedBevelBorder();
+        addTask.setBorder(RaisedLevelBorderAdd);
         addTask.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
         addTask.setVerticalAlignment(JButton.BOTTOM); // align text to bottom
         addTask.setBackground(CoolGray); // set background color
@@ -154,6 +157,8 @@ class Footer extends JPanel {
 
         clear = new JButton("CLEAR FINISHED TASKS"); // clear button
         clear.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        Border RaisedLevelBorderClear = BorderFactory.createRaisedBevelBorder();
+        clear.setBorder(RaisedLevelBorderClear);
         clear.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
         //clear.setBorder(emptyBorder); // remove border
         clear.setBackground(CoolGray); // set background color
@@ -173,12 +178,16 @@ class TitleBar extends JPanel {
 
     Color lightColor = new Color(252, 221, 176);
     Color Lavender = new Color(209,204,220);
+    Color CoolGray = new Color(145,151,174);
 
 
     TitleBar() {
         this.setPreferredSize(new Dimension(400, 80)); // Size of the title bar
         this.setBackground(Lavender); // Color of the title bar
         JLabel titleText = new JLabel("TO DO LIST"); // Text of the title bar
+        Border RaisedLevelBorderClear = BorderFactory.createRaisedBevelBorder();
+        titleText.setBorder(RaisedLevelBorderClear);
+        titleText.setBackground(CoolGray);
         titleText.setPreferredSize(new Dimension(200, 60)); // Size of the text
         titleText.setFont(new Font("Sans-serif", Font.BOLD, 20)); // Font of the text
         titleText.setHorizontalAlignment(JLabel.CENTER); // Align the text to the center
@@ -198,17 +207,17 @@ class AppFrame extends JFrame {
 
 
     AppFrame() {
-        this.setSize(400, 600); // 400 width and 600 height
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close on exit
+        this.setSize(400, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true); // Make visible
 
         title = new TitleBar();
         footer = new Footer();
         list = new List();
 
-        this.add(title, BorderLayout.NORTH); // Add title bar on top of the screen
-        this.add(footer, BorderLayout.SOUTH); // Add footer on bottom of the screen
-        this.add(list, BorderLayout.CENTER); // Add list in middle of footer and title
+        this.add(title, BorderLayout.NORTH);
+        this.add(footer, BorderLayout.SOUTH);
+        this.add(list, BorderLayout.CENTER);
 
         newTask = footer.getNewTask();
         clear = footer.getClear();
@@ -222,16 +231,16 @@ class AppFrame extends JFrame {
             public void mousePressed(MouseEvent e) {
                 Task task = new Task();
                 JButton done = new JButton();
-                list.add(task); // Add new task to list
-                list.updateNumbers(); // Updates the numbers of the tasks
+                list.add(task);
+                list.updateNumbers();
 
                 task.getDone().addMouseListener(new MouseAdapter() {
                     @override
                     public void mousePressed(MouseEvent e) {
 
-                        task.changeState(); // Change color of task
-                        list.updateNumbers(); // Updates the numbers of the tasks
-                        revalidate(); // Updates the frame
+                        task.changeState();
+                        list.updateNumbers();
+                        revalidate();
 
                     }
                 });
