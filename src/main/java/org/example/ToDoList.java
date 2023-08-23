@@ -49,7 +49,7 @@ class Task extends JPanel {
         index.setHorizontalAlignment(JLabel.CENTER); // set alignment of index label
         this.add(index, BorderLayout.WEST); // add index label to task
 
-        taskName = new JTextField("Write something.."); // create task name text field
+        taskName = new JTextField("Write something..."); // create task name text field
         taskName.setBorder(BorderFactory.createEmptyBorder()); // remove border of text field
         taskName.setBackground(Mint); // set background color of text field
 
@@ -81,12 +81,6 @@ class Task extends JPanel {
     public void changeState() {
         this.setBackground(ResedaGreen);
         taskName.setBackground(ResedaGreen);
-        checked = true;
-        revalidate();
-    }
-
-    public void changeStateDoneButton() {
-        this.setBackground(ResedaGreen);
         done.setBackground(ResedaGreen);
         checked = true;
         revalidate();
@@ -200,6 +194,7 @@ class AppFrame extends JFrame {
 
     private JButton newTask;
     private JButton clear;
+    private JButton done;
 
 
     AppFrame() {
@@ -226,13 +221,13 @@ class AppFrame extends JFrame {
             @override
             public void mousePressed(MouseEvent e) {
                 Task task = new Task();
+                JButton done = new JButton();
                 list.add(task); // Add new task to list
                 list.updateNumbers(); // Updates the numbers of the tasks
 
                 task.getDone().addMouseListener(new MouseAdapter() {
                     @override
                     public void mousePressed(MouseEvent e) {
-                        JButton done = new JButton();
 
                         task.changeState(); // Change color of task
                         list.updateNumbers(); // Updates the numbers of the tasks
