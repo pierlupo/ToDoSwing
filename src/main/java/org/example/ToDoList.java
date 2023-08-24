@@ -13,8 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.*;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -137,17 +136,18 @@ class Footer extends JPanel {
     Color CoolGray = new Color(145,151,174);
     Color lightColor = new Color(252, 221, 176);
     Color Lavender = new Color(209,204,220);
-    Border emptyBorder = BorderFactory.createEmptyBorder();
+    Border raisedLevelBorderAdd = BorderFactory.createRaisedBevelBorder();
+
 
     Footer() {
         this.setPreferredSize(new Dimension(400, 60));
         this.setBackground(Lavender);
 
         addTask = new JButton("ADD TASK"); // add task button
-        //addTask.setBorder(emptyBorder); // remove border
-        addTask.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        Border RaisedLevelBorderAdd = BorderFactory.createRaisedBevelBorder();
-        addTask.setBorder(RaisedLevelBorderAdd);
+        addTask.setBorder(raisedLevelBorderAdd);
+        Border border = addTask.getBorder();
+        Border margin = new EmptyBorder(10,10,10,10);
+        addTask.setBorder(new CompoundBorder(border,margin));
         addTask.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
         addTask.setVerticalAlignment(JButton.BOTTOM); // align text to bottom
         addTask.setBackground(CoolGray); // set background color
@@ -156,9 +156,8 @@ class Footer extends JPanel {
         this.add(Box.createHorizontalStrut(20)); // Space between buttons
 
         clear = new JButton("CLEAR FINISHED TASKS"); // clear button
-        clear.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        Border RaisedLevelBorderClear = BorderFactory.createRaisedBevelBorder();
-        clear.setBorder(RaisedLevelBorderClear);
+        clear.setBorder(raisedLevelBorderAdd);
+        clear.setBorder(new CompoundBorder(border,margin));
         clear.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
         //clear.setBorder(emptyBorder); // remove border
         clear.setBackground(CoolGray); // set background color
@@ -230,7 +229,6 @@ class AppFrame extends JFrame {
             @override
             public void mousePressed(MouseEvent e) {
                 Task task = new Task();
-                JButton done = new JButton();
                 list.add(task);
                 list.updateNumbers();
 
