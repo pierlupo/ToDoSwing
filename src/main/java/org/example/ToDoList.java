@@ -24,10 +24,7 @@ class Task extends JPanel {
     JTextField taskName;
     JButton done;
 
-    Color pink = new Color(255, 161, 161);
-    Color green = new Color(188, 226, 158);
     Color ResedaGreen = new Color(116,139,117);
-    Color doneColor = new Color(233, 119, 119);
     Color Amaranth = new Color(219,50,77);
     Color Mint = new Color(239,246,238);
     Color CoolGray = new Color(145,151,174);
@@ -37,21 +34,21 @@ class Task extends JPanel {
     private boolean checked;
 
     Task() {
-        this.setPreferredSize(new Dimension(400, 20)); // set size of task
-        this.setBackground(Mint); // set background color of task
+        this.setPreferredSize(new Dimension(400, 20));
+        this.setBackground(Mint);
 
-        this.setLayout(new BorderLayout()); // set layout of task
+        this.setLayout(new BorderLayout());
 
         checked = false;
 
-        index = new JLabel(""); // create index label
-        index.setPreferredSize(new Dimension(20, 20)); // set size of index label
-        index.setHorizontalAlignment(JLabel.CENTER); // set alignment of index label
-        this.add(index, BorderLayout.WEST); // add index label to task
+        index = new JLabel("");
+        index.setPreferredSize(new Dimension(20, 20));
+        index.setHorizontalAlignment(JLabel.CENTER);
+        this.add(index, BorderLayout.WEST);
 
-        taskName = new JTextField("Write something..."); // create task name text field
-        taskName.setBorder(BorderFactory.createEmptyBorder()); // remove border of text field
-        taskName.setBackground(Mint); // set background color of text field
+        taskName = new JTextField("Write something...");
+        taskName.setBorder(BorderFactory.createEmptyBorder());
+        taskName.setBackground(Mint);
 
         this.add(taskName, BorderLayout.CENTER);
 
@@ -66,8 +63,8 @@ class Task extends JPanel {
     }
 
     public void changeIndex(int num) {
-        this.index.setText(num + ""); // num to String
-        this.revalidate(); // refresh
+        this.index.setText(num + "");
+        this.revalidate();
     }
 
     public JButton getDone() {
@@ -89,15 +86,14 @@ class Task extends JPanel {
 
 class List extends JPanel {
 
-    Color lightColor = new Color(252, 221, 176);
     Color Lavender = new Color(209,204,220);
 
     List() {
 
         GridLayout layout = new GridLayout(10, 1);
-        layout.setVgap(5); // Vertical gap
+        layout.setVgap(5);
 
-        this.setLayout(layout); // 10 tasks
+        this.setLayout(layout);
         this.setPreferredSize(new Dimension(400, 560));
         this.setBackground(Lavender);
     }
@@ -118,8 +114,8 @@ class List extends JPanel {
         for (Component c : getComponents()) {
             if (c instanceof Task) {
                 if (((Task) c).getState()) {
-                    remove(c); // remove the component
-                    updateNumbers(); // update the indexing of all items
+                    remove(c);
+                    updateNumbers();
                 }
             }
         }
@@ -132,9 +128,7 @@ class Footer extends JPanel {
     JButton addTask;
     JButton clear;
 
-    Color orange = new Color(233, 133, 128);
     Color CoolGray = new Color(145,151,174);
-    Color lightColor = new Color(252, 221, 176);
     Color Lavender = new Color(209,204,220);
     Border raisedLevelBorderAdd = BorderFactory.createRaisedBevelBorder();
 
@@ -143,25 +137,24 @@ class Footer extends JPanel {
         this.setPreferredSize(new Dimension(400, 60));
         this.setBackground(Lavender);
 
-        addTask = new JButton("ADD TASK"); // add task button
+        addTask = new JButton("ADD TASK");
         addTask.setBorder(raisedLevelBorderAdd);
         Border border = addTask.getBorder();
         Border margin = new EmptyBorder(10,10,10,10);
         addTask.setBorder(new CompoundBorder(border,margin));
-        addTask.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
-        addTask.setVerticalAlignment(JButton.BOTTOM); // align text to bottom
-        addTask.setBackground(CoolGray); // set background color
-        this.add(addTask); // add to footer
+        addTask.setFont(new Font("Sans-serif", Font.BOLD, 15));
+        addTask.setVerticalAlignment(JButton.BOTTOM);
+        addTask.setBackground(CoolGray);
+        this.add(addTask);
 
-        this.add(Box.createHorizontalStrut(20)); // Space between buttons
+        this.add(Box.createHorizontalStrut(20)); // espace entre les boutons
 
-        clear = new JButton("CLEAR FINISHED TASKS"); // clear button
+        clear = new JButton("CLEAR FINISHED TASKS");
         clear.setBorder(raisedLevelBorderAdd);
         clear.setBorder(new CompoundBorder(border,margin));
-        clear.setFont(new Font("Sans-serif", Font.BOLD, 15)); // set font
-        //clear.setBorder(emptyBorder); // remove border
-        clear.setBackground(CoolGray); // set background color
-        this.add(clear); // add to footer
+        clear.setFont(new Font("Sans-serif", Font.BOLD, 15));
+        clear.setBackground(CoolGray);
+        this.add(clear);
     }
 
     public JButton getNewTask() {
@@ -175,22 +168,21 @@ class Footer extends JPanel {
 
 class TitleBar extends JPanel {
 
-    Color lightColor = new Color(252, 221, 176);
     Color Lavender = new Color(209,204,220);
     Color CoolGray = new Color(145,151,174);
 
 
     TitleBar() {
-        this.setPreferredSize(new Dimension(400, 80)); // Size of the title bar
-        this.setBackground(Lavender); // Color of the title bar
-        JLabel titleText = new JLabel("TO DO LIST"); // Text of the title bar
+        this.setPreferredSize(new Dimension(400, 80));
+        this.setBackground(Lavender);
+        JLabel titleText = new JLabel("TO DO LIST");
         Border RaisedLevelBorderClear = BorderFactory.createRaisedBevelBorder();
         titleText.setBorder(RaisedLevelBorderClear);
         titleText.setBackground(CoolGray);
-        titleText.setPreferredSize(new Dimension(200, 60)); // Size of the text
-        titleText.setFont(new Font("Sans-serif", Font.BOLD, 20)); // Font of the text
-        titleText.setHorizontalAlignment(JLabel.CENTER); // Align the text to the center
-        this.add(titleText); // Add the text to the title bar
+        titleText.setPreferredSize(new Dimension(200, 60));
+        titleText.setFont(new Font("Sans-serif", Font.BOLD, 20));
+        titleText.setHorizontalAlignment(JLabel.CENTER);
+        this.add(titleText);
     }
 }
 
@@ -208,7 +200,7 @@ class AppFrame extends JFrame {
     AppFrame() {
         this.setSize(400, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true); // Make visible
+        this.setVisible(true);
 
         title = new TitleBar();
         footer = new Footer();
@@ -249,8 +241,8 @@ class AppFrame extends JFrame {
         clear.addMouseListener(new MouseAdapter() {
             @override
             public void mousePressed(MouseEvent e) {
-                list.removeCompletedTasks(); // Removes all tasks that are done
-                repaint(); // Repaints the list
+                list.removeCompletedTasks();
+                repaint();
             }
         });
     }
@@ -260,8 +252,8 @@ class AppFrame extends JFrame {
 public class ToDoList {
 
     public static void main(String args[]) {
-        AppFrame frame = new AppFrame(); // Create the frame
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        AppFrame frame = new AppFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 }
